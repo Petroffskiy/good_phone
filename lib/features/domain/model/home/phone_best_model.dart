@@ -3,7 +3,7 @@ class PhoneBestModel {
   final int price;
   final String name;
   final String image;
-  final bool isFavorite;
+   bool isFavourite;
   final int discountPrise;
 
   PhoneBestModel({
@@ -11,7 +11,7 @@ class PhoneBestModel {
     required this.name,
     required this.price,
     required this.image,
-    required this.isFavorite,
+    required this.isFavourite,
     required this.discountPrise,
   });
 }

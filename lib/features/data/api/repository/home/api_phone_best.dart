@@ -6,7 +6,7 @@ part 'api_phone_best.g.dart';
 class ApiPhoneBestModel {
   final int id;
   final String title;
-  final String picture;
+   String picture;
   final bool isFavorites;
   final int discountPrice;
   final int priceWithoutDiscount;

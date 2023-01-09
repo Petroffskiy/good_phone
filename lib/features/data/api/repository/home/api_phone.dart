@@ -13,7 +13,7 @@ class ApiPhoneModel {
   @JsonKey(name: "title")
   final String title;
   @JsonKey(name: "picture")
-  final String picture;
+   String picture;
   @JsonKey(name: "subtitle")
   final String subtitle;
 

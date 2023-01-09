@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -20,13 +22,13 @@ class HotSales extends StatelessWidget {
         child: PageView.builder(
           controller: PageController(viewportFraction: 1),
           scrollDirection: Axis.horizontal,
-          itemCount: hotSales.length,
+          // itemCount: hotSales.length,
           itemBuilder: (BuildContext context, int index) {
             return cardPhones(
-                imageUrl: hotSales[index].image,
-                isNew: hotSales[index].isNew ?? false,
-                name: hotSales[index].namePhone,
-                description: hotSales[index].descriptionPhone);
+                imageUrl: hotSales[index % hotSales.length].image,
+                isNew: hotSales[index % hotSales.length].isNew ?? false,
+                name: hotSales[index % hotSales.length].namePhone,
+                description: hotSales[index % hotSales.length].descriptionPhone);
           },
         ),
       ),
@@ -49,9 +51,12 @@ class HotSales extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 clipBehavior: Clip.hardEdge,
-                child: Image.network(
-                  imageUrl,
-                  fit: BoxFit.fitWidth,
+                // child: Image.network(
+                //   imageUrl,
+                //   fit: BoxFit.fitWidth,
+                // ),
+                child: Image.file(
+                  File(imageUrl),
                 ),
               ),
               Container(

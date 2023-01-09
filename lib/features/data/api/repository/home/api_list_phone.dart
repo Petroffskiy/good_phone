@@ -1,6 +1,6 @@
+
 import 'package:good_phone/features/data/api/repository/home/api_phone.dart';
 import 'package:json_annotation/json_annotation.dart';
-
 import 'api_phone_best.dart';
 
 part 'api_list_phone.g.dart';
@@ -16,7 +16,6 @@ class ApiListPhone {
   });
 
   factory ApiListPhone.fromJson(Map<String, dynamic> json) {
-
     return ApiListPhone(
       homeStore: List.generate(
         json['home_store'].length,

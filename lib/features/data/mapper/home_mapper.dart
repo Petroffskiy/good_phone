@@ -25,7 +25,7 @@ class HomeMapper {
           name: listPhone.bestSeller[index].title,
           price: listPhone.bestSeller[index].priceWithoutDiscount,
           image: listPhone.bestSeller[index].picture,
-          isFavorite: listPhone.bestSeller[index].isFavorites,
+          isFavourite: listPhone.bestSeller[index].isFavorites,
           discountPrise: listPhone.bestSeller[index].discountPrice,
         ),
       ),

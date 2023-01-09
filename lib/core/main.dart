@@ -7,7 +7,6 @@ import 'injection.dart' as inj;
 
 Future<void> main() async {
   await dotenv.load(fileName: ".env");
-  runApp(const Application());
+  runApp(Application());
   inj.init();
-
 }

@@ -11,12 +11,4 @@ class RepositoryModule {
   Future<AllPhonesModel> allPhones(){
     return _homeRepository.allPhones();
   }
-  // static HomeRepository homeRepository() {
-  //   if (_homeRepository == null) {
-  //   _homeRepository = MainPhoneDataRepository(
-  //     ApiModule.apiUtil(),
-  //   );
-  //   }
-  //   return _homeRepository;
-  // }
 }

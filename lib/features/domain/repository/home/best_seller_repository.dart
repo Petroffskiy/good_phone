@@ -1,5 +1,6 @@
 class BestSellerRepository {
   final int id;
+  bool isFavourite;
   final String name;
   final String description;
   final String image;
@@ -11,5 +12,6 @@ class BestSellerRepository {
     required this.description,
     required this.image,
     required this.isBuy,
+    required this.isFavourite,
   });
 }

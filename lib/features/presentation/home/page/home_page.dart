@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:good_phone/features/presentation/home_page/widget/home_page/best_seller_list.dart';
+import 'package:good_phone/features/presentation/home/widget/home_page/best_seller_list.dart';
 
 import '../bloc/home_bloc.dart';
 import '../widget/home_page/list_category.dart';
+import '../widget/home_page/modal_bottom_sheet.dart';
 import '../widget/home_page/new_phone.dart';
 
 class MainPage extends StatefulWidget {
@@ -30,27 +31,40 @@ class _MainState extends State<MainPage> {
               padding: const EdgeInsets.only(
                 top: 50.0,
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.fmd_good_outlined,
-                        color: Color(0xffFF6E4E),
+              child: Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(left: 70.0),
+                            child: Icon(
+                              Icons.fmd_good_outlined,
+                              color: Color(0xffFF6E4E),
+                            ),
+                          ),
+                          const Text("Zihuatanejo, Gro"),
+                          IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.keyboard_arrow_down),
+                          ),
+                        ],
                       ),
-                      const Text("Zihuatanejo, Gro"),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.keyboard_arrow_down),
+                    ),
+                    Positioned(
+                      right: 35,
+                      child: IconButton(
+                        onPressed: () {
+                          showCustomBottomSheet(context: context);
+                        },
+                        icon: const Icon(Icons.filter_alt_outlined),
                       ),
-                    ],
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.filter_alt_outlined),
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
             ),
             Padding(
@@ -102,8 +116,8 @@ class _MainState extends State<MainPage> {
                         color: Colors.white),
                     child: const TextField(
                       decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(
-                              bottom: 0, left: 12, top: 0),
+                          contentPadding:
+                              EdgeInsets.only(bottom: 0, left: 12, top: 0),
                           border: InputBorder.none,
                           prefixIcon: Icon(
                             Icons.find_replace_rounded,
@@ -167,68 +181,60 @@ class _MainState extends State<MainPage> {
                       ),
                     ],
                   ),
-                  BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
-                    if (state is HomeDownload) {
-                      return HotSales(
-                        hotSales: state.phoneMain,
-                      );
-                    } else {
-                      return const Center(
-                        child: Text(
-                          "Do not work",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      );
-                    }
-                  }),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 5.0),
-                    child: Row(
-                      children: [
-                        const Text(
-                          "Best seller",
-                          style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const Spacer(),
-                        TextButton(
-                          onPressed: () {},
-                          child: const Text(
-                            "see more",
-                            style: TextStyle(
-                              color: Color(0xffFF6E4E),
-                              fontSize: 15,
+                  BlocBuilder<HomeBloc, HomeState>(
+                    builder: (context, state) {
+                      if (state is HomeLoading) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      } else if (state is HomeDownload) {
+                        return Column(
+                          children: [
+                            HotSales(
+                              hotSales: state.phoneMain,
                             ),
-                          ),
-                        ),
-                      ],
-                    ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5.0),
+                              child: Row(
+                                children: [
+                                  const Text(
+                                    "Best seller",
+                                    style: TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: const Text(
+                                      "see more",
+                                      style: TextStyle(
+                                        color: Color(0xffFF6E4E),
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: [
+                                ...listPhones(
+                                    phones: state.bestSeller, context: context)
+                              ],
+                            ),
+                          ],
+                        );
+                      } else {
+                        return const Center(
+                          child: Text("Sorry, my bad..."),
+                        );
+                      }
+                    },
                   ),
                 ],
               ),
-            ),
-            BlocBuilder<HomeBloc, HomeState>(
-              builder: (context, state) {
-                if (state is HomeDownload) {
-                  return Padding(
-                    padding: const EdgeInsets.only(left: 14.0),
-                    child: Column(
-                      children: [
-                        ...listPhones(phones: state.bestSeller)
-                      ],
-                    ),
-                  );
-                } else {
-                  return const Center(
-                    child: Text(
-                      "Do not work",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  );
-                }
-              },
             ),
           ],
         ),

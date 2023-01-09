@@ -1,6 +1,6 @@
 import 'package:good_phone/features/data/api/ApiUtil.dart';
 import 'package:good_phone/features/domain/repository/home/home_repository.dart';
-import 'package:good_phone/features/presentation/home_page/bloc/home_bloc.dart';
+import 'package:good_phone/features/presentation/home/bloc/home_bloc.dart';
 
 import '../features/data/api/service/list_phone_service.dart';
 import '../features/data/repository/main_phones_data_repository.dart';
