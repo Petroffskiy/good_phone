@@ -10,6 +10,7 @@ class ListCategory extends StatefulWidget {
 
 class _ListCategoryState extends State<ListCategory> {
   int indexActive = 0;
+  //TODO: need go in domain
   List<Map<String, dynamic>> category = [
     {
       'name': "Phones",
@@ -64,7 +65,7 @@ class _ListCategoryState extends State<ListCategory> {
                     borderRadius: BorderRadius.circular(50),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     child: Icon(
                       category[index]['icon'],
                       size: 24,
@@ -73,7 +74,7 @@ class _ListCategoryState extends State<ListCategory> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 7),
+                  padding: const EdgeInsets.only(top: 7),
                   child: Text(category[index]['name']),
                 ),
               ],

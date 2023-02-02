@@ -1,8 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../domain/model/home/phone_model.dart';
 
 class HotSales extends StatelessWidget {
@@ -12,7 +10,7 @@ class HotSales extends StatelessWidget {
     Key? key,
     required this.hotSales,
   }) : super(key: key);
-  final ScrollController controller = ScrollController();
+  // final ScrollController controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +26,8 @@ class HotSales extends StatelessWidget {
                 imageUrl: hotSales[index % hotSales.length].image,
                 isNew: hotSales[index % hotSales.length].isNew ?? false,
                 name: hotSales[index % hotSales.length].namePhone,
-                description: hotSales[index % hotSales.length].descriptionPhone);
+                description:
+                    hotSales[index % hotSales.length].descriptionPhone);
           },
         ),
       ),
@@ -51,10 +50,6 @@ class HotSales extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 clipBehavior: Clip.hardEdge,
-                // child: Image.network(
-                //   imageUrl,
-                //   fit: BoxFit.fitWidth,
-                // ),
                 child: Image.file(
                   File(imageUrl),
                 ),
@@ -91,7 +86,7 @@ class HotSales extends StatelessWidget {
                         ),
                       Padding(
                         padding: const EdgeInsets.only(top: 18),
-                        child: Container(
+                        child: SizedBox(
                           width: 120,
                           child: Text(
                             name,

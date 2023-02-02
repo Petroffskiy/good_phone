@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class NavigationModel {
   static const icons = [
-    Icon(Icons.shopping_bag_outlined),
-    Icon(Icons.favorite_outline),
-    Icon(Icons.person_outlined),
+    Icon(Icons.shopping_bag_outlined, size: 20,),
+    Icon(Icons.favorite_outline, size: 20,),
+    Icon(Icons.person_outlined, size: 20,),
   ];
   static const labels = ["shop", 'favourite', 'profile'];
 

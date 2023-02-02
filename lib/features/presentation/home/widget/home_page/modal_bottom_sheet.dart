@@ -6,6 +6,7 @@ import '../../bloc/home_bloc.dart';
 
 showCustomBottomSheet({required BuildContext context}) {
   return showModalBottomSheet(
+      useRootNavigator: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
       ),

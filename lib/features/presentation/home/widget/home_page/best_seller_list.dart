@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:good_phone/core/router/router.gr.dart';
 import 'dart:io';
@@ -42,23 +41,7 @@ class _BestSellerSingleState extends State<BestSellerSingle> {
           GestureDetector(
             onTap: () {
               //TODO: необходимо сделать норм навигацию
-              // context.router.push(DetailRoute(id: widget.id));
-              // context.router.push(MainRoute());
-              context.router.push(MainRoute(children: [DetailRoute(id: widget.id)]));
-              // AutoRouter.of(context).push(CustomBottomNavigationBar(children: [MainRoute(children: [DetailRoute(id: widget.id)])]));
-              print(context.router.stack);
-              print(context.router.currentChild?.path);
-              print(context.topRoute.name);
-              print(context.router.stack.last);
-              print("_________________________________");
-              print(AutoRouter.of(context).stack);
-              print(AutoRouter.of(context).currentChild!.name);
-              print(AutoRouter.of(context).childControllers);
-              print(AutoRouter.of(context).topRoute.name);
-              print(AutoRouter.of(context).isRoot);
-              print(AutoRouter.of(context).root.innerRouterOf(CustomBottomNavigationBar.name));
-              print(AutoRouter.of(context).root);
-              print(AutoRouter.of(context).parentAsStackRouter);
+              context.router.push(DetailRoute(id: widget.id));
             },
             child: Container(
               decoration: BoxDecoration(
@@ -128,7 +111,7 @@ class _BestSellerSingleState extends State<BestSellerSingle> {
                 //TODO: need adding in favorite page
                 widget.isFavourite = !widget.isFavourite;
                 setState(() {
-                  print("Youre tap");
+                  print("You`re tap");
                 });
               },
               child: Container(
@@ -173,7 +156,7 @@ List<Widget> listPhones(
                 priceDiscount: phones[i].discountPrise,
                 name: phones[i].name,
                 //TODO: костыль для решения проблемы с фотографией (502)
-                er: i == 2 ? true : false,
+                er: (i == 2 || i == 0) ? true : false,
                 isFavourite: phones[i].isFavourite,
               ),
             ),
@@ -186,7 +169,7 @@ List<Widget> listPhones(
                 name: phones[i + 1].name,
                 isFavourite: phones[i + 1].isFavourite,
                 //TODO: костыль для решения проблемы с фотографией (404)
-                er: i +1  == 1 ? true: false,
+                er: (i + 1 == 1 || i + 1 == 3) ? true : false,
               ),
           ],
         ),

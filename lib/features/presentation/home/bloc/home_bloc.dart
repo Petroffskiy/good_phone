@@ -17,7 +17,6 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetHomePhone _allPhones;
-
   HomeBloc(this._allPhones) : super(HomeEmpty()) {
     on<GetHomePhones>(
       (event, emit) async {
@@ -69,7 +68,7 @@ Future<List<PhoneBestModel>> parseHomeBestPhone(
   List<PhoneBestModel> finalPhoneBest = [];
   for (int i = 0; i < allPhonesResult.bestModel.length; i++) {
     //TODO: в данноом месте происходи подмена фотографии, так как прилетающая с сервера  указана со стороннего сайта и выдаёт 502 ошибку
-    if (i == 2 || i == 1) {
+    if (i == 3 || i == 2 || i == 1 || i == 0) {
       finalPhoneBest.add(
         PhoneBestModel(
           id: allPhonesResult.bestModel[i].id,

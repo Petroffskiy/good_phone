@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../features/internal/application.dart';
+import 'application.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'injection.dart' as inj;

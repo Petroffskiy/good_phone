@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:good_phone/core/theme/custom_theme.dart';
-import 'package:good_phone/features/presentation/home/bloc/home_bloc.dart';
-
-import 'package:good_phone/core/injection.dart' as inj;
-
-import '../../core/router/router.gr.dart';
+import 'package:good_phone/features/presentation/product_detail/bloc/product_detail_bloc.dart';
+import '../features/presentation/home/bloc/home_bloc.dart';
+import 'injection.dart' as inj;
 
 
+import 'router/router.gr.dart';
 
 class Application extends StatelessWidget {
-   Application({Key? key}): super(key: key);
+  Application({Key? key}) : super(key: key);
   final _appRouter = AppRouter();
 
   @override
@@ -19,13 +17,15 @@ class Application extends StatelessWidget {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (_) => inj.locator<HomeBloc>(),
-        ),
-      ] ,
+        BlocProvider(create: (_) => inj.locator<HomeBloc>()),
+        BlocProvider(create:(_) => inj.locator<ProductDetailBloc>())
+      ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        theme: CustomTheme.lightTheme,
+        theme: ThemeData(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+        ),
         routerDelegate: _appRouter.delegate(),
         routeInformationParser: _appRouter.defaultRouteParser(),
       ),
